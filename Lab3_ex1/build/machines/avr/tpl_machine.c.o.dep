@@ -1,0 +1,109 @@
+build/machines/avr/tpl_machine.c.o: \
+ ../../../../machines/avr/tpl_machine.c /usr/lib/avr/include/avr/io.h \
+ /usr/lib/avr/include/avr/sfr_defs.h /usr/lib/avr/include/inttypes.h \
+ /usr/lib/gcc/avr/5.4.0/include/stdint.h /usr/lib/avr/include/stdint.h \
+ /usr/lib/avr/include/avr/iom328p.h /usr/lib/avr/include/avr/portpins.h \
+ /usr/lib/avr/include/avr/common.h /usr/lib/avr/include/avr/version.h \
+ /usr/lib/avr/include/avr/fuse.h /usr/lib/avr/include/avr/lock.h \
+ /usr/lib/avr/include/avr/interrupt.h \
+ ../../../../machines/avr/tpl_machine.h \
+ ../../../../os/tpl_os_custom_types.h \
+ ../../../../os/tpl_os_application_def.h lab03_ex01/tpl_app_define.h \
+ ../../../../os/tpl_config_def.h ../../../../os/tpl_config_check.h \
+ lab03_ex01/tpl_app_custom_types.h ../../../../os/tpl_compiler.h \
+ ../../../../machines/avr/tpl_os_std_types.h \
+ ../../../../os/tpl_os_application_def.h lab03_ex01/tpl_app_config.h \
+ lab03_ex01/tpl_app_define.h ../../../../os/tpl_os_internal_types.h \
+ ../../../../os/tpl_os_custom_types.h \
+ ../../../../machines/avr/tpl_machine.h ../../../../os/tpl_compiler.h \
+ ../../../../os/tpl_memmap.h ../../../../os/tpl_os_definitions.h \
+ ../../../../os/tpl_os_kernel.h ../../../../os/tpl_os_internal_types.h \
+ ../../../../os/tpl_os_multicore_macros.h ../../../../os/tpl_memmap.h \
+ lab03_ex01/tpl_os.h ../../../../os/tpl_os_error.h \
+ ../../../../os/tpl_os_types.h ../../../../os/tpl_os_os.h \
+ ../../../../os/tpl_os_interrupt.h ../../../../os/tpl_os_task.h \
+ ../../../../os/tpl_os_resource.h ../../../../os/tpl_os_alarm.h
+
+/usr/lib/avr/include/avr/io.h:
+
+/usr/lib/avr/include/avr/sfr_defs.h:
+
+/usr/lib/avr/include/inttypes.h:
+
+/usr/lib/gcc/avr/5.4.0/include/stdint.h:
+
+/usr/lib/avr/include/stdint.h:
+
+/usr/lib/avr/include/avr/iom328p.h:
+
+/usr/lib/avr/include/avr/portpins.h:
+
+/usr/lib/avr/include/avr/common.h:
+
+/usr/lib/avr/include/avr/version.h:
+
+/usr/lib/avr/include/avr/fuse.h:
+
+/usr/lib/avr/include/avr/lock.h:
+
+/usr/lib/avr/include/avr/interrupt.h:
+
+../../../../machines/avr/tpl_machine.h:
+
+../../../../os/tpl_os_custom_types.h:
+
+../../../../os/tpl_os_application_def.h:
+
+lab03_ex01/tpl_app_define.h:
+
+../../../../os/tpl_config_def.h:
+
+../../../../os/tpl_config_check.h:
+
+lab03_ex01/tpl_app_custom_types.h:
+
+../../../../os/tpl_compiler.h:
+
+../../../../machines/avr/tpl_os_std_types.h:
+
+../../../../os/tpl_os_application_def.h:
+
+lab03_ex01/tpl_app_config.h:
+
+lab03_ex01/tpl_app_define.h:
+
+../../../../os/tpl_os_internal_types.h:
+
+../../../../os/tpl_os_custom_types.h:
+
+../../../../machines/avr/tpl_machine.h:
+
+../../../../os/tpl_compiler.h:
+
+../../../../os/tpl_memmap.h:
+
+../../../../os/tpl_os_definitions.h:
+
+../../../../os/tpl_os_kernel.h:
+
+../../../../os/tpl_os_internal_types.h:
+
+../../../../os/tpl_os_multicore_macros.h:
+
+../../../../os/tpl_memmap.h:
+
+lab03_ex01/tpl_os.h:
+
+../../../../os/tpl_os_error.h:
+
+../../../../os/tpl_os_types.h:
+
+../../../../os/tpl_os_os.h:
+
+../../../../os/tpl_os_interrupt.h:
+
+../../../../os/tpl_os_task.h:
+
+../../../../os/tpl_os_resource.h:
+
+../../../../os/tpl_os_alarm.h:

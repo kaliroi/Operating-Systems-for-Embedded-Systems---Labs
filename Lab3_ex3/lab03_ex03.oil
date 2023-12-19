@@ -1,0 +1,87 @@
+OIL_VERSION = "2.5" : "test" ;
+
+CPU test {    
+  OS config {
+    STATUS = STANDARD;
+    BUILD = TRUE {
+      TRAMPOLINE_BASE_PATH = "../../../..";
+      APP_NAME = "Lab3_Ex03";
+      APP_SRC = "lab03_ex03.cpp";
+      CPPCOMPILER = "avr-g++";
+      COMPILER = "avr-gcc";
+      LINKER = "avr-gcc";
+      ASSEMBLER = "avr-gcc";
+      COPIER = "avr-objcopy";
+      SYSTEM = PYTHON;
+	  
+      LIBRARY  = serial;
+    };
+    SYSTEM_CALL = TRUE;
+  };
+
+  APPMODE stdAppmode {};
+  
+  MESSAGE msgSend {
+	MESSAGEPROPERTY = SEND_STATIC_INTERNAL { CDATATYPE = "int" ; }; 
+  };
+
+  MESSAGE msgRec { 
+    MESSAGEPROPERTY = RECEIVE_UNQUEUED_INTERNAL { 
+    SENDINGMESSAGE = msgSend;
+    INITIALVALUE = 0x00;};
+  };
+ 
+  ALARM Aperiod1200msec {
+    COUNTER = SystemCounter;
+    ACTION = ACTIVATETASK { TASK = TaskA; };
+    AUTOSTART = TRUE { APPMODE = stdAppmode; ALARMTIME = 1172; CYCLETIME = 1172; };
+  };
+  
+  ALARM Bperiod2000msec {
+    COUNTER = SystemCounter;
+    ACTION = ACTIVATETASK { TASK = TaskB; };
+    AUTOSTART = TRUE { APPMODE = stdAppmode; ALARMTIME = 1954; CYCLETIME = 1954; };
+  };
+  
+  ALARM Cperiod3000msec {
+    COUNTER = SystemCounter;
+    ACTION = ACTIVATETASK { TASK = TaskC; };
+    AUTOSTART = TRUE { APPMODE = stdAppmode; ALARMTIME = 2930; CYCLETIME = 2930; };
+  };
+  
+  TASK Init {
+    PRIORITY = 99;
+    AUTOSTART = TRUE {APPMODE = stdAppmode;};
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    STACKSIZE = 256;
+    MESSAGE = msgSend;
+	
+  };
+  
+  TASK TaskA {
+    PRIORITY = 3;
+    AUTOSTART = TRUE { APPMODE = stdAppmode; };
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    MESSAGE = msgSend;
+    MESSAGE = msgRec;
+  };
+
+  TASK TaskB {
+    PRIORITY = 2;
+    AUTOSTART = TRUE { APPMODE = stdAppmode; };
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+	
+  };
+  
+  TASK TaskC {
+    PRIORITY = 1;
+    AUTOSTART = TRUE { APPMODE = stdAppmode; };
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    MESSAGE = msgSend;
+    MESSAGE = msgRec;
+  };
+};

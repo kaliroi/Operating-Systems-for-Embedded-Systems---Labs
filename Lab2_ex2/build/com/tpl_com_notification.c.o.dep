@@ -1,0 +1,81 @@
+build/com/tpl_com_notification.c.o: \
+ ../../../../com/tpl_com_notification.c \
+ ../../../../os/tpl_os_application_def.h lab02_ex02/tpl_app_define.h \
+ ../../../../os/tpl_config_def.h ../../../../os/tpl_config_check.h \
+ ../../../../os/tpl_os_action.h ../../../../os/tpl_os_internal_types.h \
+ ../../../../machines/avr/tpl_os_std_types.h \
+ ../../../../os/tpl_os_custom_types.h \
+ ../../../../os/tpl_os_application_def.h \
+ lab02_ex02/tpl_app_custom_types.h ../../../../os/tpl_compiler.h \
+ ../../../../machines/avr/tpl_machine.h \
+ ../../../../os/tpl_os_custom_types.h ../../../../os/tpl_compiler.h \
+ ../../../../os/tpl_os_task_kernel.h ../../../../os/tpl_os_kernel.h \
+ ../../../../os/tpl_os_multicore_macros.h ../../../../os/tpl_memmap.h \
+ ../../../../os/tpl_os_kernel.h ../../../../os/tpl_machine_interface.h \
+ ../../../../os/tpl_os_definitions.h ../../../../com/tpl_com_base_mo.h \
+ ../../../../os/tpl_os_types.h ../../../../com/tpl_com_types.h \
+ ../../../../com/tpl_com_private_types.h \
+ ../../../../com/tpl_com_filtering.h \
+ ../../../../os/tpl_os_internal_types.h ../../../../os/tpl_memmap.h \
+ ../../../../com/tpl_com_definitions.h \
+ ../../../../com/tpl_com_notification.h
+
+../../../../os/tpl_os_application_def.h:
+
+lab02_ex02/tpl_app_define.h:
+
+../../../../os/tpl_config_def.h:
+
+../../../../os/tpl_config_check.h:
+
+../../../../os/tpl_os_action.h:
+
+../../../../os/tpl_os_internal_types.h:
+
+../../../../machines/avr/tpl_os_std_types.h:
+
+../../../../os/tpl_os_custom_types.h:
+
+../../../../os/tpl_os_application_def.h:
+
+lab02_ex02/tpl_app_custom_types.h:
+
+../../../../os/tpl_compiler.h:
+
+../../../../machines/avr/tpl_machine.h:
+
+../../../../os/tpl_os_custom_types.h:
+
+../../../../os/tpl_compiler.h:
+
+../../../../os/tpl_os_task_kernel.h:
+
+../../../../os/tpl_os_kernel.h:
+
+../../../../os/tpl_os_multicore_macros.h:
+
+../../../../os/tpl_memmap.h:
+
+../../../../os/tpl_os_kernel.h:
+
+../../../../os/tpl_machine_interface.h:
+
+../../../../os/tpl_os_definitions.h:
+
+../../../../com/tpl_com_base_mo.h:
+
+../../../../os/tpl_os_types.h:
+
+../../../../com/tpl_com_types.h:
+
+../../../../com/tpl_com_private_types.h:
+
+../../../../com/tpl_com_filtering.h:
+
+../../../../os/tpl_os_internal_types.h:
+
+../../../../os/tpl_memmap.h:
+
+../../../../com/tpl_com_definitions.h:
+
+../../../../com/tpl_com_notification.h:

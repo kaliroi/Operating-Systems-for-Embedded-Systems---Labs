@@ -1,0 +1,119 @@
+OIL_VERSION = "2.5" : "test" ;
+
+CPU three_tasks {
+  OS config {
+    STATUS = STANDARD;
+    BUILD = TRUE {
+      TRAMPOLINE_BASE_PATH = "../../../..";
+      APP_NAME = "lab2_ex1";
+      APP_SRC = "lab02_ex01.cpp";
+      CPPCOMPILER = "avr-g++";
+      COMPILER = "avr-gcc";
+      LINKER = "avr-gcc";
+      ASSEMBLER = "avr-gcc";
+      COPIER = "avr-objcopy";
+      SYSTEM = PYTHON;
+      
+      LIBRARY = serial;
+    };
+    SYSTEM_CALL = TRUE;
+  };
+
+  APPMODE stdAppmode {};
+  
+   /* Msg sent by Task M (msgMsend) */ 
+  MESSAGE from_M {
+    MESSAGEPROPERTY = SEND_STATIC_INTERNAL {
+      CDATATYPE = "int";
+    };
+  };
+  
+   /* Msg sent by Tack C (msgCsend) */ 
+  MESSAGE from_C {
+    MESSAGEPROPERTY = SEND_STATIC_INTERNAL {
+      CDATATYPE = "int";
+    };
+  };
+  
+ /* Msg received by Task V from Task M (msgMrec) */ 
+  MESSAGE TaskV_receive {
+    MESSAGEPROPERTY = RECEIVE_UNQUEUED_INTERNAL {
+      SENDINGMESSAGE = from_M;
+    };
+    NOTIFICATION = ACTIVATETASK {
+      TASK = TaskV;
+    };
+  };
+
+ /* Msg received by Task M from Task C (msgCrec) */ 
+  MESSAGE TaskM_receive {
+    MESSAGEPROPERTY = RECEIVE_UNQUEUED_INTERNAL {
+      SENDINGMESSAGE = from_C;
+    };
+  };
+
+//Cperiod100ms
+   ALARM TaskC_activation {
+    COUNTER = SystemCounter;
+    ACTION = ACTIVATETASK {TASK = TaskC;};
+    AUTOSTART = TRUE {APPMODE = stdAppmode; ALARMTIME = 100; CYCLETIME = 100;};
+  };
+  
+//Mperiod500ms
+   ALARM TaskM_activation {
+    COUNTER = SystemCounter;
+    ACTION = ACTIVATETASK {TASK = TaskM;};
+    AUTOSTART = TRUE {APPMODE = stdAppmode; ALARMTIME = 100; CYCLETIME = 500;};
+  };
+  
+//Vperiod500ms
+    ALARM TaskV_activation {
+    COUNTER = SystemCounter;
+    ACTION = ACTIVATETASK {TASK = TaskV;};
+    AUTOSTART = TRUE {APPMODE = stdAppmode; ALARMTIME = 100; CYCLETIME = 500;};
+  };
+
+//stopper
+  ALARM stopper {
+    COUNTER = SystemCounter;
+    ACTION = ACTIVATETASK {TASK = stop;};
+    AUTOSTART = TRUE {APPMODE = stdAppmode; ALARMTIME = 10000; CYCLETIME = 0;};
+  };
+
+  TASK TaskV {
+    PRIORITY = 1;
+    AUTOSTART = FALSE;
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    MESSAGE = TaskV_receive;
+    STACKSIZE = 256;
+  };
+
+  TASK TaskM {
+    PRIORITY = 2;
+    AUTOSTART = FALSE;
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    MESSAGE = from_M;
+    MESSAGE = TaskM_receive;
+    STACKSIZE = 256;
+  };
+  
+  TASK TaskC {
+    PRIORITY = 3;
+    AUTOSTART = FALSE;
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    MESSAGE = from_C;
+    STACKSIZE = 256;
+  }; 
+
+  TASK stop {
+    PRIORITY = 99;
+    AUTOSTART = FALSE;
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    STACKSIZE = 256;
+  };
+
+};

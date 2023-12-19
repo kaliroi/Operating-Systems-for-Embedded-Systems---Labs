@@ -1,0 +1,112 @@
+OIL_VERSION = "2.5" : "test" ;
+
+CPU test {    
+  OS config {
+    STATUS = STANDARD;
+    BUILD = TRUE {
+      TRAMPOLINE_BASE_PATH = "../../../..";
+      APP_NAME = "lab2_ex2";
+      APP_SRC = "lab02_ex02.cpp";
+      CPPCOMPILER = "avr-g++";
+      COMPILER = "avr-gcc";
+      LINKER = "avr-gcc";
+      ASSEMBLER = "avr-gcc";
+      COPIER = "avr-objcopy";
+      SYSTEM = PYTHON;
+      
+      LIBRARY = serial;
+    };
+    SYSTEM_CALL = TRUE;
+  };
+  
+  APPMODE stdAppmode {};
+  
+  /* Message sent by task M */
+  MESSAGE msgMsend {
+    MESSAGEPROPERTY = SEND_STATIC_INTERNAL {
+      CDATATYPE = "int";
+    };
+  };
+  
+  /* Message sent by task C */
+  MESSAGE msgCsend {
+    MESSAGEPROPERTY = SEND_STATIC_INTERNAL {
+      CDATATYPE = "int";
+    };
+  };
+  
+  /* Message received by task V from M */
+  MESSAGE msgMrec {
+    MESSAGEPROPERTY = RECEIVE_UNQUEUED_INTERNAL {
+      SENDINGMESSAGE = msgMsend;
+    };
+    NOTIFICATION = ACTIVATETASK {     
+      TASK = TaskV;
+    };
+  }; 
+  
+  /* Message received by task M from C */
+  MESSAGE msgCrec {
+    MESSAGEPROPERTY = RECEIVE_UNQUEUED_INTERNAL {
+      SENDINGMESSAGE = msgCsend;
+    };
+    NOTIFICATION = ACTIVATETASK {     
+      TASK = TaskM;
+    };
+  };
+  
+    ALARM Cperiod100ms {
+    COUNTER = SystemCounter;
+    ACTION = ACTIVATETASK { TASK = TaskC; };
+    AUTOSTART = TRUE { APPMODE = stdAppmode; ALARMTIME = 100; CYCLETIME = 100; };
+  };
+  
+    ALARM Vperiod25ms {
+    COUNTER = SystemCounter;
+    ACTION = ACTIVATETASK { TASK = TaskV; };
+    AUTOSTART = TRUE { APPMODE = stdAppmode; ALARMTIME = 100; CYCLETIME = 25; };
+  };  
+    
+    ALARM stopper {
+    COUNTER = SystemCounter;
+    ACTION = ACTIVATETASK { TASK = stop; };
+    AUTOSTART = TRUE { APPMODE = stdAppmode; ALARMTIME = 40000; CYCLETIME = 0; };
+  };
+    
+  TASK TaskV {
+    PRIORITY = 1;
+    AUTOSTART = FALSE;
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    MESSAGE = msgMrec;
+    STACKSIZE = 256;
+  };
+  
+  TASK TaskM {
+    PRIORITY = 2;
+    AUTOSTART = FALSE;  
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    MESSAGE = msgMsend;
+    MESSAGE = msgCrec;
+    STACKSIZE = 256;
+  };
+  
+   TASK TaskC {
+    PRIORITY = 3; 
+    AUTOSTART = FALSE;
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    MESSAGE = msgCsend;
+    STACKSIZE = 256;
+  };
+  
+    TASK stop {
+    PRIORITY = 99;
+    AUTOSTART = FALSE;
+    ACTIVATION = 1;
+    SCHEDULE = FULL;
+    STACKSIZE = 256;
+  };
+  
+};
